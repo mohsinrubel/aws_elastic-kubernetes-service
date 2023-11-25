@@ -60,7 +60,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: testDeepchainTracker
+  name: testMohsin
   region: ap-south-1
 
 nodeGroups:
@@ -95,13 +95,13 @@ set_context:
 # apiVersion: v1
 # kind: Namespace
 # metadata:
-#   name: internal-tracker
+#   name: logic-matrix
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: tracker
-  # namespace: internal-tracker
+  name: logic-matrix
+  # namespace: logic-matrix
 spec:
   selector:
     app: tracker
@@ -114,22 +114,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tracker
-  # namespace: internal-tracker
+  name:logic-matrix
+  # namespace: logic-matrix
 
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tracker
+      app: logic-matrix
   template:
     metadata:
       labels:
-        app: tracker
+        app:logic-matrix
     spec:
       containers:
-        - name: tracker
-          image: shihab24/testapp:latest
+        - name:logic-matrix
+          image: mrubel/logicapp:latest # Enter your image name
 #          restartPolicy: Never
           ports:
             - containerPort: 3000
@@ -139,19 +139,19 @@ spec:
           imagePullPolicy: Always
 #       restartPolicy: Never
       # imagePullSecrets:
-      # - name: deepchain
+      # - name: logicmatrix
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: tracker
-  # namespace: internal-tracker
+  name:logic-matrix
+  # namespace: logic-matrix
 
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name:  tracker
+    name:  logic-matrix
   minReplicas: 1
   maxReplicas: 2
   metrics:
