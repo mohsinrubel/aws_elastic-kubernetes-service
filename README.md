@@ -81,13 +81,13 @@ delete_cluster:
 	eksctl delete cluster -f cluster.yaml
 
 describe_cluster:
-	eksctl utils describe-stacks --region=ap-south-1 --cluster=testDeepchainTracker
+	eksctl utils describe-stacks --region=ap-south-1 --cluster=testMohsin
 
 aws_identity:
 	aws sts get-caller-identity
 
 set_context:
-	eksctl utils write-kubeconfig --cluster=testDeepchainTracker --set-kubeconfig-context=true
+	eksctl utils write-kubeconfig --cluster=testMohsin --set-kubeconfig-context=true
 ```
 ## Example of loadbalancer application
 ```
